@@ -1,0 +1,13 @@
+{
+  "name": "nxnext",
+  "$schema": "./node_modules/nx/schemas/project-schema.json",
+  "tags": [],
+  "targets": {
+    "prisma:migrate:dev": {
+      "command": "npx prisma migrate dev"
+    },
+    "prisma:generate": {
+      "command": "npx prisma generate"
+    }
+  }
+}

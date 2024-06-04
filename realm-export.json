@@ -1,0 +1,31 @@
+{
+  "id": "nxnext",
+  "realm": "nxnext",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "nxnext_client",
+      "secret": "nxnext_secret",
+      "enabled": true,
+      "protocol": "openid-connect",
+      "redirectUris": ["http://localhost:3000/*"]
+    }
+  ],
+  "users": [
+    {
+      "username": "user",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Rootus",
+      "lastName": "Adminus",
+      "email": "user@nxnext.com",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password"
+        }
+      ],
+      "realmRoles": ["ADMIN"]
+    }
+  ]
+}
