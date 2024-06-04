@@ -17,7 +17,6 @@
     "paths": {
       "@nxnext/auth": ["libs/auth/src/index.ts"],
       "@nxnext/auth/server": ["libs/auth/src/server.ts"],
-      "@nxnext/deps-api": ["libs/deps-api/src/server.ts"],
       "@nxnext/ui": ["libs/ui/src/index.ts"],
       "@nxnext/ui/*": ["libs/ui/src/lib/*"],
       "@nxnext/ui/server": ["libs/ui/src/server.ts"],
