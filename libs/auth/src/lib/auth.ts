@@ -1,13 +1,19 @@
+import { prisma } from '@nxnext/db/server';
 import NextAuth from 'next-auth';
-import Keycloak from 'next-auth/providers/keycloak';
+import Resend from 'next-auth/providers/resend';
 
 import { PrismaAdapter } from '@auth/prisma-adapter';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  providers: [Keycloak],
-  session: { strategy: 'jwt' },
+  providers: [
+    Resend({
+      apiKey: undefined, // REMINDER: keep undefined to avoid sending emails
+      async sendVerificationRequest(params) {
+        console.log('');
+        console.log(`>>> Magic Link: ${params.url}`);
+        console.log('');
+      },
+    }),
+  ],
 });
