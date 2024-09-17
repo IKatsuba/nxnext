@@ -1,28 +1,19 @@
-version: '3.8'
+version: '3'
 
 services:
-  appdb:
-    image: postgres:latest
-    container_name: appdb
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+  redis:
+    image: redis/redis-stack:edge
+    ports:
+      - '6379:6379'
     volumes:
-      - appdb_data:/var/lib/postgresql/data
+      - redis_data:/data
+  http_redis:
+    image: ghcr.io/ikatsuba/serverless-redis:1.2
     ports:
-      - 5432:5432
-
-  appdb_proxy:
-    image: ghcr.io/neondatabase/wsproxy:latest
+      - '63799:3000'
     environment:
-      APPEND_PORT: 'appdb:5432'
-      ALLOW_ADDR_REGEX: '.*'
-      LOG_TRAFFIC: 'true'
-    ports:
-      - '5433:80'
-    depends_on:
-      - appdb
+      SR_TOKEN: token
+      REDIS_URL: redis://redis:6379
 
 volumes:
-  appdb_data:
+  redis_data:

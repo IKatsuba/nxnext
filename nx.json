@@ -53,5 +53,10 @@
     "@nx/react": {
       "library": {}
     }
+  },
+  "targetDefaults": {
+    "e2e-ci--**/*": {
+      "dependsOn": ["^build"]
+    }
   }
 }

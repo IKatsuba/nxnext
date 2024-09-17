@@ -1,11 +1,16 @@
-import { prisma } from '@nxnext/db/server';
 import NextAuth from 'next-auth';
 import Resend from 'next-auth/providers/resend';
 
-import { PrismaAdapter } from '@auth/prisma-adapter';
+import { UpstashRedisAdapter } from '@auth/upstash-redis-adapter';
+import { Redis } from '@upstash/redis';
+
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_URL!,
+  token: process.env.UPSTASH_REDIS_TOKEN!,
+});
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma),
+  adapter: UpstashRedisAdapter(redis),
   providers: [
     Resend({
       apiKey: undefined, // REMINDER: keep undefined to avoid sending emails
