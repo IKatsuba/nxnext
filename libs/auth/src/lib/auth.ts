@@ -11,6 +11,7 @@ const redis = new Redis({
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   adapter: UpstashRedisAdapter(redis),
+  trustHost: true,
   providers: [
     Resend({
       apiKey: undefined, // REMINDER: keep undefined to avoid sending emails
