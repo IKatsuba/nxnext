@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@nxnext/utils';
 
 import { GripVertical } from 'lucide-react';
